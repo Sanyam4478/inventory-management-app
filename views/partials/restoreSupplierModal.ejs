@@ -1,0 +1,104 @@
+<% suppliers.forEach(supplier => { %>
+    <% if (supplier.Status === 'inactive') { %>
+      <div class="modal fade" id="restoreSupplierModal-<%= supplier.Supplier_ID %>" tabindex="-1" aria-labelledby="restoreSupplierModalLabel-<%= supplier.Supplier_ID %>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header bg-success text-white">
+              <h4 class="modal-title" id="restoreSupplierModalLabel-<%= supplier.Supplier_ID %>">Restore Supplier</h4>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+  
+            <!-- Modal Body -->
+            <div class="modal-body text-center">
+              <i class="fas fa-undo restore-icon"></i>
+              <p>Are you sure you want to restore <strong><%= supplier.Supplier_Name %></strong>?</p>
+              <p class="text-success">They will be moved back to the active list.</p>
+            </div>
+  
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <form action="/supplier/restore/<%= supplier.Supplier_ID %>" method="POST">
+                <button type="submit" class="btn-restore">Restore</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  <% }); %>
+  
+  <style>
+    .modal-content {
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+  
+    .modal-header.bg-success {
+      background: linear-gradient(135deg, #28a745, #218838);
+      color: white;
+      padding: 15px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+  
+    .modal-header h4 {
+      font-weight: bold;
+      margin: 0;
+    }
+  
+    .restore-icon {
+      font-size: 40px;
+      color: #28a745;
+      margin-bottom: 10px;
+      animation: pulse 1s infinite alternate;
+    }
+  
+    .modal-body {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  
+    .btn-restore {
+      background: #28a745;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: all 0.3s ease-in-out;
+      border: none;
+    }
+  
+    .btn-restore:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  
+    @keyframes pulse {
+      from {
+        transform: scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+  </style>
+  

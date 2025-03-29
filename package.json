@@ -1,0 +1,26 @@
+{
+  "name": "inventory-management",
+  "version": "1.0.0",
+  "description": "Inventory Management App by FutureFounders",
+  "main": "app.js",
+  "scripts": {
+    "test": "set NODE_ENV=test && jest",
+    "test:coverage": "set NODE_ENV=test && jest --coverage"
+  },
+  "author": "FutureFounders",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "pg": "^8.13.3",
+    "sequelize": "^6.37.6"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.1.0"
+  }
+}

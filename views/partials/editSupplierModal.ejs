@@ -1,0 +1,93 @@
+<% suppliers.forEach(supplier => { %>
+    <div class="modal fade" id="editSupplierModal-<%= supplier.Supplier_ID %>" tabindex="-1" aria-labelledby="editSupplierModalLabel-<%= supplier.Supplier_ID %>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="editSupplierModalLabel-<%= supplier.Supplier_ID %>">Edit Supplier</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form action="/supplier/edit/<%= supplier.Supplier_ID %>" method="POST">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="Supplier_Name" class="form-control" id="supplierName-<%= supplier.Supplier_ID %>" value="<%= supplier.Supplier_Name %>" required>
+                            <label for="supplierName-<%= supplier.Supplier_ID %>">Supplier Name</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="number" name="Contact_Number" class="form-control" id="contactNumber-<%= supplier.Supplier_ID %>" value="<%= supplier.Contact_Number %>" required>
+                            <label for="contactNumber-<%= supplier.Supplier_ID %>">Contact Number</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" name="Email" class="form-control" id="email-<%= supplier.Supplier_ID %>" value="<%= supplier.Email %>" required>
+                            <label for="email-<%= supplier.Supplier_ID %>">Email</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="Address" class="form-control" id="address-<%= supplier.Supplier_ID %>" value="<%= supplier.Address %>" required>
+                            <label for="address-<%= supplier.Supplier_ID %>">Address</label>
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn-save">Save Changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }); %>
+
+<style>
+    .modal-content {
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+        color: white;
+        padding: 15px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .modal-header h4 {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .form-floating label {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .form-floating input:focus + label {
+        color: #0061ff;
+        font-weight: bold;
+    }
+
+    .btn-save {
+        background: #0061ff;
+        color: white;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: all 0.3s;
+        border: none;
+    }
+
+    .btn-save:hover {
+        background: #004ecb;
+    }
+</style>

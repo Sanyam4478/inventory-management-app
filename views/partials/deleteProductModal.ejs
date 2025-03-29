@@ -1,0 +1,103 @@
+<% products.forEach(item => { %>
+    <div class="modal fade" id="deleteProductModal-<%= item.Product_ID %>" tabindex="-1" aria-labelledby="deleteProductModalLabel-<%= item.Product_ID %>" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteProductModalLabel-<%= item.Product_ID %>">Delete Product</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body text-center">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    <p>Are you sure you want to delete <strong><%= item.Product_Name %></strong>?</p>
+                    <p class="text-danger">This action cannot be undone.</p>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <form action="/inventory/delete/<%= item.Product_ID %>" method="POST">
+                        <button type="submit" class="btn-delete">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }); %>
+
+<style>
+    .modal-content {
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #ff4d4d, #cc0000);
+        color: white;
+        padding: 15px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .modal-header h4 {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .warning-icon {
+        font-size: 40px;
+        color: #ff4d4d;
+        margin-bottom: 10px;
+        animation: pulse 1s infinite alternate;
+    }
+
+    .modal-body {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .btn-delete {
+        background: #ff4d4d;
+        color: white;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        border: none;
+    }
+
+    .btn-delete:hover {
+        background: #cc0000;
+        transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+    }
+
+</style>
